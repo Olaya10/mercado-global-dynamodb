@@ -1,0 +1,22 @@
+1. ¿Cuáles son los patrones de accesos?
+2. Diseñar llaves sobrecargadas con gerarquias
+
+*1. PATRONES DE ACCESO.*
+
+1. Listar Pedidos recientes de un usuario.
+2. Listar todos los productos ordenados por fecha.
+3. Obtener detalles de un pedido en específico.
+4. Obtener informacion del perfil de usuario.
+
+*2. LLAVES SOBRECARGADAS.*
+
+*TIPO PEDIDO*		*PK*			*SK*			*ATRIBUTOS*
+Usuario			USR#<email>		PERFIL			nombre,direcciones,metodo_pago
+pedido			USR#<email>		ORD#<id_pedido>		fecha, estado, total, direc_envio
+Item_Pedido		ORD#<id_pedido>		ITEM#<id_producto>	nombre_producto, cantidad, precio, subtotal
+
+aws dynamodb put-item --table-name MercadoGlobal --endpoint-url http://172.20.0.3:8000 
+--item '{"pk": {"S": "USR#l@x.com"}, 
+	 "sk": {"S": "PERFIL"}, 
+	 "nombre": {"S": "Luisa"}, 
+	 "pagos": {"S": "Visa...1234"}}'
